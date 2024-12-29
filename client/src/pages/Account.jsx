@@ -4,6 +4,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import PlacesPage from "./PlacesPage";
+import AccountNav from "../AccountNav";
 
 export default function AccountPage() {
   const { ready, user, setUser } = useContext(UserContext);
@@ -27,35 +28,13 @@ export default function AccountPage() {
     return <Navigate to={"/login"} />;
   }
 
-  function linkClasses(type = null) {
-    let classes = "inline-flex gap-1 py-2 px-6 rounded-full";
-    if (type === subpage) {
-      classes += " bg-primary";
-    } else {
-      classes += " bg-gray-200";
-    }
-    return classes;
-  }
 
   if(redirect){
     return <Navigate to={redirect}/>
   }
   return (
     <div>
-      <nav className="w-full flex mt-4 gap-4 justify-center mb-9">
-        <Link className={linkClasses("profile")} to={"/account"}>
-          {" "}
-          My Profile
-        </Link>
-        <Link className={linkClasses("bookings")} to={"/account/bookings"}>
-          {" "}
-          My bookings
-        </Link>
-        <Link className={linkClasses("places")} to={"/account/places"}>
-          {" "}
-          My accomodations
-        </Link>
-      </nav>
+      <AccountNav />
       {subpage === 'profile' && (
         <div className="text-center max-w-lg mx-auto ">
             Logged in as {user.name} ({user.email})
