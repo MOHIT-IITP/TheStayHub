@@ -33,19 +33,29 @@ export default function PlacesPage() {
   async function addPhotoByLink(ev) {
     ev.preventDefault();
     const {data:filename} = await axios.post('/upload-by-link', {link: photoLink});
-    onChange(prev => {
+    setAddedPhotos(prev => {
       return [...prev, filename];
     });
     setPhotoLink('');
   }
-  // async function addPhotoByLink(e){
-  //   e.preventDefault();
-  //   const {data:filename} = await axios.post('/upload-by-link', {link: photoLink});
-  //   setAddedPhotos(prev => {
-  //     return[...prev, filename];
-  //   });
-  //   setPhotoLink('');
-  // }
+
+  function uploadPhoto(ev) {
+    const files = ev.target.files;
+    const data = new FormData();
+
+    for( let i = 0; i < files.length; i++){
+      data.append('photos',files[i]);
+    }
+    
+    axios.post('/upload', data,{
+    headers: {'Content-Type': 'multipart/form-data'}
+    }).then(response => {
+      const {data:filenames} = response;
+      setAddedPhotos(prev => {
+      return [...prev, ...filenames];
+    });
+    })
+  }
 
   return (
     <div>
@@ -102,13 +112,14 @@ export default function PlacesPage() {
                 Add Photo
               </button>
             </div>
-            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            <div className="grid grid-cols-3 gap-2 md:grid-cols-4 lg:grid-cols-6">
               {addedPhotos.length > 0 && addedPhotos.map(link => (
-                <div>
-                  <img src={'http://localhost:4000/uploads' + link} alt="" />
+                <div className="h-32 flex">
+                  <img className=" w-full object-cover rounded-2xl " src={`http://localhost:4000/uploads/${link}`} alt="" />
                 </div>
               ))}
-              <button className="border bg-transparent rounded-2xl text-xl flex justify-center p-8">
+              <label className="h-32 cursor-pointer flex p-2 border bg-transparent rounded-2xl text-xl flex justify-center p-8">
+                <input type="file" multiple className="hidden" onChange={uploadPhoto}/>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -124,7 +135,7 @@ export default function PlacesPage() {
                   />
                 </svg>
                 Upload
-              </button>
+              </label>
             </div>
             {preInput("Description", " Description of Place")}
             <textarea

@@ -9,6 +9,8 @@ const jwt = require("jsonwebtoken");
 const jwtSecret = "23423@@#$2343@#$%@$";
 const cookieParser = require("cookie-parser")
 const imageDownloader = require("image-downloader")
+const multer = require('multer');
+const fs = require('fs');
 
 const bcryptSalt = bcrypt.genSaltSync(10);
 
@@ -85,16 +87,28 @@ app.post('/logout', (req, res)=>{
   res.cookie('token', '').json(true);
 })
 
-
-app.post('/upload-by-link', async (req,res) => {
+app.post('/upload-by-link',async (req, res) => {
   const {link} = req.body;
-  const newName = 'photo' + Date.now() + '.jpg';
+  const newName = Date.now() + '.jpg';
   await imageDownloader.image({
     url: link,
-    dest: '/tmp/' +newName,
+    dest: __dirname +'/uploads/' + newName,
   });
-  res.json(url);
-});
+  res.json(newName);
+})
 
+const photosMiddleware = multer({dest:'uploads/'});
+app.post('/upload', photosMiddleware.array('photos',100),(req, res)=>{
+  const uploadedFiles = [];
+  for (let i = 0; i < req.files.length; i++){
+    const {path, originalname} = req.files[i];
+    const parts = originalname.split('.');
+    const ext = parts[parts.length-1];
+    const newPath = path + '.' + ext;
+    fs.renameSync(path, newPath);
+    uploadedFiles.push(newPath.replace('uploads/',''));
+  }
+  res.json(uploadedFiles);
+})
 
 app.listen(4000, (req, res) => console.log("Server is Running"));
