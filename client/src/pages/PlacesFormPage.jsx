@@ -1,5 +1,5 @@
-import PhotosUploader from "../PhotoUploader";
-import Perk from "../Perks";
+import PhotosUploader from "../components/PhotoUploader";
+import Perk from "../components/Perks"; 
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Navigate, useParams } from "react-router-dom";

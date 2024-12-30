@@ -12,6 +12,7 @@ const cookieParser = require("cookie-parser");
 const imageDownloader = require("image-downloader");
 const multer = require("multer");
 const fs = require("fs");
+const BookingModel = require("./models/booking");
 
 const bcryptSalt = bcrypt.genSaltSync(10);
 
@@ -193,6 +194,32 @@ app.put("/places", async (req, res) => {
 
 app.get('/places', async (req, res) => {
   res.json(await Place.find());
+});
+
+app.post('/bookings', async (req, res)=>{
+  const userData = await getUserDataFromToken(req);
+  const {place, checkIn, checkOut, nubmerOfGuests, name, phone} = req.body;
+  BookingModel.create({
+    place, checkIn, checkOut, nubmerOfGuests, name, phone,price, user:userData.id,
+  }).then((doc)=>{
+    res.json(doc);
+  }).catch(err => {
+    throw err;
+  })
+});
+
+function getUserDataFromToken(req) {
+  return new Promise((resolve, reject) => {
+    jwt.verify(req.cookies.token, jwtSecret, {}, async (err, userData) => {
+      if (err) reject(err);
+      resolve(userData);
+    });
+  });
+}
+
+app.get('/bookings', async (req, res) => {
+  const userData = await getUserDataFromToken(req);
+  res.json( await BookingModel.find({user:userData.id}));
 });
 
 app.listen(4000, (req, res) => console.log("Server is Running"));

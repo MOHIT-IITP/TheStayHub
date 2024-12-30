@@ -8,6 +8,10 @@ import { UserContextProvider } from "./UserContext";
 import AccountPage from "./pages/Account";
 import PlacesPage from "./pages/PlacesPage";
 import PlacesFormPage from "./pages/PlacesFormPage";
+import '@fontsource/poppins'
+import PlaceFullPage from "./pages/PlaceFullPage";
+import BookingsPage from "./pages/BookingsPage";
+import BookingPage from "./pages/BookingPage";
 
 axios.defaults.baseURL = "http://localhost:4000";
 axios.defaults.withCredentials = true;
@@ -25,6 +29,9 @@ function App() {
           <Route path="/account/places" element={<PlacesPage />}></Route>
           <Route path="/account/places/new" element={<PlacesFormPage />}></Route>
           <Route path="/account/places/:id" element={<PlacesFormPage />}></Route>
+          <Route path="/place/:id" element={<PlaceFullPage />}></Route>
+          <Route path="/account/bookings" element={<BookingsPage/>}></Route>
+          <Route path="/account/bookings/:id" element={<BookingPage/>}></Route>
         </Route>
       </Routes>
 
