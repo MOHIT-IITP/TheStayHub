@@ -102,19 +102,39 @@ app.post("/upload-by-link", async (req, res) => {
   res.send("Uploaded: " + newName);
 });
 
+// const photosMiddleware = multer({ dest: "uploads/" });
+// app.post("/upload", photosMiddleware.array("photos", 100), (req, res) => {
+//   const uploadedFiles = [];
+//   for (let i = 0; i < req.files.length; i++) {
+//     const { path, originalname } = req.files[i];
+//     const parts = originalname.split(".");
+//     const ext = parts[parts.length - 1];
+//     const newPath = path + "." + ext;
+//     fs.renameSync(path, newPath);
+//     uploadedFiles.push(newPath.replace("uploads/", ""));
+//   }
+//   res.json(uploadedFiles);
+// });
+
 const photosMiddleware = multer({ dest: "uploads/" });
 app.post("/upload", photosMiddleware.array("photos", 100), (req, res) => {
-  const uploadedFiles = [];
-  for (let i = 0; i < req.files.length; i++) {
-    const { path, originalname } = req.files[i];
-    const parts = originalname.split(".");
-    const ext = parts[parts.length - 1];
-    const newPath = path + "." + ext;
-    fs.renameSync(path, newPath);
-    uploadedFiles.push(newPath.replace("uploads/", ""));
+  if (req.files && req.files.length > 0) {
+    console.log("Files received:", req.files); // Debug log
+    const uploadedFiles = [];
+    for (let i = 0; i < req.files.length; i++) {
+      const { path, originalname } = req.files[i];
+      const parts = originalname.split(".");
+      const ext = parts[parts.length - 1];
+      const newPath = path + "." + ext;
+      fs.renameSync(path, newPath);
+      uploadedFiles.push(newPath.replace("uploads/", ""));
+    }
+    res.json(uploadedFiles);
+  } else {
+    res.status(400).json({ message: "No files uploaded" });
   }
-  res.json(uploadedFiles);
 });
+
 
 app.post("/places", (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
@@ -184,7 +204,6 @@ app.put("/places", async (req, res) => {
     const placeDoc = await Place.findById(id);
     if (userData.id === placeDoc.owner.toString()) {
       placeDoc.set({
-        id,
         title,
         address,
         photos: addedPhotos, 
