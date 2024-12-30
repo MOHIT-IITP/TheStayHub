@@ -16,9 +16,10 @@ export default function IndexPage() {
       {places.length > 0 &&
         places.map((place) => (
           <div>
-            <div className="bg-gray-500">
+            <div className="bg-gray-500 flex rounded-2xl ">
               {place.photos?.[0] && (
                 <img
+                  className="rounded-2xl aspect-square object-cover"
                   src={"http://localhost:4000/uploads/" + place.photos?.[0]}
                   alt=""
                 />

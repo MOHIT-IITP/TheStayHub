@@ -56,7 +56,7 @@ export default function PlacesFormPage() {
     const placeData = {
         title,
         address,
-        photos: addedPhotos,
+        addedPhotos,
         description,
         extraInfo,
         perks,

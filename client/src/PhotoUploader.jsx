@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 export default function PhotosUploader({ addedPhotos, onChange }) {
-  const [photoLink, setPhotoLink] = useState("");
+  const [photoLink, setPhotoLink] = useState('');
   async function addPhotoByLink(ev) {
     ev.preventDefault();
     const { data: filename } = await axios.post("/upload-by-link", {
@@ -10,27 +10,23 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
     onChange((prev) => {
       return [...prev, filename];
     });
-    setPhotoLink("");
+    setPhotoLink('');
   }
 
   function uploadPhoto(ev) {
     const files = ev.target.files;
     const data = new FormData();
-
     for (let i = 0; i < files.length; i++) {
-      data.append("photos", files[i]);
+      data.append('photos', files[i]);
     }
-
-    axios
-      .post("/upload", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((response) => {
-        const { data: filenames } = response;
-        onChange((prev) => {
-          return [...prev, ...filenames];
-        });
+    axios.post('/upload', data, {
+      headers: {'Content-type':'multipart/form-data'}
+    }).then(response => {
+      const {data:filenames} = response;
+      onChange(prev => {
+        return [...prev, ...filenames];
       });
+    })
   }
 
   function removePhoto(ev, filename) {
@@ -69,7 +65,7 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
                 alt=""
               />
               <button
-                onClick={ev => removePhoto(ev, link)}
+                onClick={(ev) => removePhoto(ev, link)}
                 className="absolute bottom-1 right-1 text-white bg-black py-2 px-2 cursor-pointer bg-opacity-50 rounded-2xl "
               >
                 <svg
@@ -88,7 +84,7 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
                 </svg>
               </button>
               <button
-                onClick={ ev => selectAsMainPhoto(ev, link)}
+                onClick={(ev) => selectAsMainPhoto(ev, link)}
                 className="absolute bottom-1 left-1 text-white bg-black py-2 px-2 cursor-pointer bg-opacity-50 rounded-2xl "
               >
                 {link === addedPhotos[0] && (

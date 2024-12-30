@@ -102,20 +102,6 @@ app.post("/upload-by-link", async (req, res) => {
   res.send("Uploaded: " + newName);
 });
 
-// const photosMiddleware = multer({ dest: "uploads/" });
-// app.post("/upload", photosMiddleware.array("photos", 100), (req, res) => {
-//   const uploadedFiles = [];
-//   for (let i = 0; i < req.files.length; i++) {
-//     const { path, originalname } = req.files[i];
-//     const parts = originalname.split(".");
-//     const ext = parts[parts.length - 1];
-//     const newPath = path + "." + ext;
-//     fs.renameSync(path, newPath);
-//     uploadedFiles.push(newPath.replace("uploads/", ""));
-//   }
-//   res.json(uploadedFiles);
-// });
-
 const photosMiddleware = multer({ dest: "uploads/" });
 app.post("/upload", photosMiddleware.array("photos", 100), (req, res) => {
   if (req.files && req.files.length > 0) {
@@ -135,40 +121,24 @@ app.post("/upload", photosMiddleware.array("photos", 100), (req, res) => {
   }
 });
 
-
-app.post("/places", (req, res) => {
+app.post('/places', (req,res) => {
   mongoose.connect(process.env.MONGO_URL);
-  const { token } = req.cookies;
+  const {token} = req.cookies;
   const {
-    title,
-    address,
-    addedPhotos,
-    description,
-    price,
-    perks,
-    extraInfo,
-    checkIn,
-    checkOut,
-    maxGuests,
+    title,address,addedPhotos,description,price,
+    perks,extraInfo,checkIn,checkOut,maxGuests,
   } = req.body;
   jwt.verify(token, jwtSecret, {}, async (err, userData) => {
     if (err) throw err;
     const placeDoc = await Place.create({
-      owner: userData.id,
-      price,
-      title,
-      address,
-      photos: addedPhotos,
-      description,
-      perks,
-      extraInfo,
-      checkIn,
-      checkOut,
-      maxGuests,
+      owner:userData.id,price,
+      title,address,photos:addedPhotos,description,
+      perks,extraInfo,checkIn,checkOut,maxGuests,
     });
     res.json(placeDoc);
   });
 });
+
 
 app.get("/user-places", async (req, res) => {
   const { token } = req.cookies;

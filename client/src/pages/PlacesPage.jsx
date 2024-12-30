@@ -37,9 +37,9 @@ export default function PlacesPage() {
         <div>
           {places.length > 0 && places.map(place => (
             <Link to={'/account/places/' + place._id} className=" cursor-pointer bg-gray-100 p-4 flex gap-4 rounded-lg mt-4" key={place._id}>
-              <div className=" w-32 h-32 bg-gray-300 shrink-0">
+              <div className=" object-cover w-32 h-32 bg-gray-300 rounded-2xl shrink-0 ">
                 {place.photos.length > 0 ? (
-                  <img src={`http://localhost:4000/uploads/${place.photos[0]}`} alt="" onError={(e) => { console.error('Image failed to load:', e); }} />
+                  <img className="object-cover w-full  h-full rounded-2xl" src={`http://localhost:4000/uploads/${place.photos[0]}`} alt="" onError={(e) => { console.error('Image failed to load:', e); }} />
                 ) : (
                   <p>No photos available</p>
                 )}
