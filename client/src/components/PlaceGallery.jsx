@@ -1,9 +1,10 @@
 import { useState } from "react";
 export default function PlaceGallery({ place }) {
   const [showAllPhotos, setShowAllPhotos] = useState(false);
+
   if (showAllPhotos) {
     return (
-      <div className="fixed bg-black  text-white inset-0 overflow-auto min-h-full ">
+      <div className="fixed bg-black text-white inset-0 overflow-auto min-h-full ">
         <div className="p-8 bg-black grid gap-4">
           <div>
             <h2 className="text-3xl mr-48 font-extrabold">{place.title}</h2>
@@ -36,6 +37,7 @@ export default function PlaceGallery({ place }) {
       </div>
     );
   }
+
   return (
     <div className="relative">
       <div className="grid gap-2 grid-cols-[2fr_1fr] rounded-2xl overflow-hidden">
@@ -55,7 +57,7 @@ export default function PlaceGallery({ place }) {
           {place.photos?.[1] && (
             <img
               onClick={() => setShowAllPhotos(true)}
-              className="cursor-pointer"
+              className="cursor-pointer aspect-square object-cover"
               src={"http://localhost:4000/uploads/" + place.photos[1]}
               alt=""
             />
