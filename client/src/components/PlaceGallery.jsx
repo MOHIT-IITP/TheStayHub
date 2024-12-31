@@ -53,7 +53,7 @@ export default function PlaceGallery({ place }) {
             </div>
           )}
         </div>
-        <div className="grid">
+        <div>
           {place.photos?.[1] && (
             <img
               onClick={() => setShowAllPhotos(true)}

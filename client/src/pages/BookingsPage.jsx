@@ -5,6 +5,7 @@ import PlaceImg from "../components/PlaceImg.jsx";
 import { differenceInCalendarDays, format } from "date-fns";
 import { Link } from "react-router-dom";
 import BookingDates from "../components/BookingDate.jsx";
+import Footer from "../components/Footer.jsx";
 
 export default function BookingsPage() {
   const [bookings, setBookings] = useState([]);
@@ -63,6 +64,7 @@ export default function BookingsPage() {
             </Link>
           ))}
       </div>
+      <Footer />
     </div>
   );
 }
