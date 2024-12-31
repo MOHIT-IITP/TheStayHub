@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
+
 export default function Footer() {
   return (
-    <>
-      <div className="relative -m-8 pb-5 mt-14 text-white  bg-gray-800  p-5  ">
-        <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center">
-        <div className="mb-3 items-start flex flex-col">
-          <h2 className=" text-primary mb-3 text-lg font-bold">Support</h2>
-          <p className="flex my-2 gap-1">
+    <div className="relative -m-8 pb-5 mt-14 text-white bg-gray-800 p-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center">
+        <div className="mb-3 items-start flex flex-col text-center">
+          <h2 className="text-primary mb-3 text-lg font-bold">Support</h2>
+          <p className="flex my-2 gap-1 justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -24,7 +24,7 @@ export default function Footer() {
             </svg>
             Help Centre
           </p>
-          <p className="flex gap-1">
+          <p className="flex gap-1 justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -42,11 +42,11 @@ export default function Footer() {
             Cancellation Options
           </p>
         </div>
-        <div className="mb-3 items-start flex flex-col">
+        <div className="mb-3 items-start flex flex-col text-center">
           <Link to={"/"} className="mb-3 text-primary text-lg font-bold">
             Wander Space
           </Link>
-          <Link className="flex gap-1 my-2" to={"/account"}>
+          <Link className="flex gap-1 my-2 justify-center" to={"/account"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -63,7 +63,7 @@ export default function Footer() {
             </svg>
             Profile
           </Link>
-          <Link to={"/account/bookings"} className="flex gap-1 ">
+          <Link to={"/account/bookings"} className="flex gap-1 justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -81,9 +81,9 @@ export default function Footer() {
             Bookings
           </Link>
         </div>
-        <div className="mb-3 items-start flex flex-col">
+        <div className="mb-3 items-start flex flex-col text-center">
           <h2 className="mb-3 text-lg text-primary font-bold">Contact Us</h2>
-          <p className="flex gap-2 my-2 ">
+          <p className="flex gap-2 my-2 justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -100,7 +100,7 @@ export default function Footer() {
             </svg>
             +999-888-7777
           </p>
-          <p className="flex gap-2">
+          <p className="flex gap-2 justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -118,25 +118,24 @@ export default function Footer() {
             WanderSpace@gmail.com
           </p>
         </div>
-        </div>
-      <div className="flex gap-4 mt-4 items-center justify-center">
-         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              <FaFacebook className="text-white hover:text-blue-800 text-2xl" />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <FaTwitter className="text-white-400 hover:text-blue-600 text-2xl" />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <FaInstagram className="text-white-600 hover:text-pink-600 text-2xl" />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-              <FaLinkedin className="text-white-700 hover:text-blue-600 text-2xl" />
-            </a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-              <FaYoutube className="text-white-600 hover:text-red-600 text-2xl" />
-            </a>
       </div>
+      <div className="flex gap-7  mt-4 items-center justify-center">
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <FaFacebook className="text-white hover:text-blue-800 text-2xl" />
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <FaTwitter className="text-white-400 hover:text-blue-600 text-2xl" />
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <FaInstagram className="text-white-600 hover:text-pink-600 text-2xl" />
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <FaLinkedin className="text-white-700 hover:text-blue-600 text-2xl" />
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+          <FaYoutube className="text-white-600 hover:text-red-600 text-2xl" />
+        </a>
       </div>
-    </>
+    </div>
   );
 }
