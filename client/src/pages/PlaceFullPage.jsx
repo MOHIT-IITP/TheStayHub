@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import BookingForm from "../components/BookingForm";
-import PlaceGallery from "../components/PlaceGallery";
+import BookingForm from "../components/BookingForm.jsx";
+import PlaceGallery from "../components/PlaceGallery.jsx";
 import LocationMap from "../components/LocationMap.jsx";
 
 export default function PlaceFullPage() {

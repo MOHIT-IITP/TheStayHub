@@ -1,7 +1,11 @@
-export default function LocationMap({ place }) {
+export default function LocationMap({ place, className = null }) {
+  if (!className) {
+    className = " my-3 block ";
+  }
+  className += " flex gap-1 font-semibold underline ";
   return (
     <a
-      className=" flex block my-2 font-semibold underline"
+      className={className}
       target="_blank"
       href={"https://maps.google.com/?q=" + place.address}
     >
