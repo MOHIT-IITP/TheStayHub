@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Header from "../Header";
+import Header from "../components/Header";
 import { useEffect, useState } from "react";
 import axios from "axios";
 export default function IndexPage() {

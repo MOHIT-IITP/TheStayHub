@@ -1,7 +1,8 @@
 import { Link, Navigate, useParams } from "react-router-dom";
-import AccountNav from "../AccountNav";
+import AccountNav from "../components/AccountNav";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import PlaceImg from "../components/PlaceImg";
 export default function PlacesPage() {
   const [places, setPlaces] = useState([]);
   useEffect(() => {
@@ -38,11 +39,7 @@ export default function PlacesPage() {
           {places.length > 0 && places.map(place => (
             <Link to={'/account/places/' + place._id} className=" cursor-pointer bg-gray-100 p-4 flex gap-4 rounded-lg mt-4" key={place._id}>
               <div className=" object-cover w-32 h-32 bg-gray-300 rounded-2xl shrink-0 ">
-                {place.photos.length > 0 ? (
-                  <img className="object-cover w-full  h-full rounded-2xl" src={`http://localhost:4000/uploads/${place.photos[0]}`} alt="" onError={(e) => { console.error('Image failed to load:', e); }} />
-                ) : (
-                  <p>No photos available</p>
-                )}
+                <PlaceImg place={place}/>
               </div>
               <div className="flex flex-col gap-2 grow-0 shrink">
               <h2 className="text-xl ">{place.title}</h2>

@@ -32,6 +32,16 @@ app.get("/test", (req, res) => {
   res.json("test ok");
 });
 
+
+function getUserDataFromToken(req) {
+  return new Promise((resolve, reject) => {
+    jwt.verify(req.cookies.token, jwtSecret, {}, async (err, userData) => {
+      if (err) reject(err);
+      resolve(userData);
+    });
+  });
+}
+
 app.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
   try {
@@ -198,7 +208,7 @@ app.get('/places', async (req, res) => {
 
 app.post('/bookings', async (req, res)=>{
   const userData = await getUserDataFromToken(req);
-  const {place, checkIn, checkOut, nubmerOfGuests, name, phone} = req.body;
+  const {place, checkIn, checkOut, nubmerOfGuests, name, phone, price, } = req.body;
   BookingModel.create({
     place, checkIn, checkOut, nubmerOfGuests, name, phone,price, user:userData.id,
   }).then((doc)=>{
@@ -208,18 +218,10 @@ app.post('/bookings', async (req, res)=>{
   })
 });
 
-function getUserDataFromToken(req) {
-  return new Promise((resolve, reject) => {
-    jwt.verify(req.cookies.token, jwtSecret, {}, async (err, userData) => {
-      if (err) reject(err);
-      resolve(userData);
-    });
-  });
-}
 
 app.get('/bookings', async (req, res) => {
   const userData = await getUserDataFromToken(req);
-  res.json( await BookingModel.find({user:userData.id}));
+  res.json( await BookingModel.find({user:userData.id}).populate('place'));
 });
 
 app.listen(4000, (req, res) => console.log("Server is Running"));
