@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+} from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <div className="relative -m-8 pb-5 mt-14 text-white bg-gray-800 p-5">
+    <div className="min-h-fit pb-16 relative -m-8 pb-5 mt-14 text-white bg-gray-800 p-5">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center">
         <div className="mb-3 items-start flex flex-col text-center">
           <h2 className="text-primary mb-3 text-lg font-bold">Support</h2>
@@ -119,21 +125,50 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <div className="flex gap-7  mt-4 items-center justify-center">
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+      <div className="flex gap-7  mt-8 items-center justify-center">
+        <a
+          href="https://facebook.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaFacebook className="text-white hover:text-blue-800 text-2xl" />
         </a>
         <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
           <FaTwitter className="text-white-400 hover:text-blue-600 text-2xl" />
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaInstagram className="text-white-600 hover:text-pink-600 text-2xl" />
         </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <FaLinkedin className="text-white-700 hover:text-blue-600 text-2xl" />
         </a>
         <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
           <FaYoutube className="text-white-600 hover:text-red-600 text-2xl" />
+        </a>
+      </div>
+      <div className="flex justify-center items-center mt-4">
+        Made with{"  "} &nbsp;
+        <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="size-6"
+          >
+            <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+          </svg>
+        </span>{" "}
+        &nbsp; by{" "}
+        <a className="p-2" href="https://github.com/MOHIT-IITP">
+          MOHIT-IITP
         </a>
       </div>
     </div>

@@ -4,6 +4,7 @@ import axios from "axios";
 import LocationMap from "../components/LocationMap.jsx";
 import PlaceGallery from "../components/PlaceGallery.jsx";
 import BookingDates from "../components/BookingDate.jsx";
+import Footer from "../components/Footer.jsx";
 
 export default function BookingPage() {
   const { id } = useParams();
@@ -25,8 +26,8 @@ export default function BookingPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold">{booking.place.title} </h1>
-      <LocationMap className="my-2 block" place={booking.place} />
+      <h1 className="mt-20 text-3xl font-bold">{booking.place.title} </h1>
+      <LocationMap className="my-2  block" place={booking.place} />
       <div className="flex items-center justify-between pr-8 bg-gray-200 p-4 mb-4 rounded-xl">
         <div>
           Your booking infromation:
