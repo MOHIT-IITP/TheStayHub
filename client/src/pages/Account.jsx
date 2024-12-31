@@ -8,16 +8,15 @@ import AccountNav from "../components/AccountNav";
 
 export default function AccountPage() {
   const { ready, user, setUser } = useContext(UserContext);
-  const [redirect, setRedirect] = useState(null)
+  const [redirect, setRedirect] = useState(null);
   let { subpage } = useParams();
   if (subpage === undefined) {
     subpage = "profile";
   }
 
-
-  async function logout(){
-    await axios.post('/logout');
-    setRedirect('/');
+  async function logout() {
+    await axios.post("/logout");
+    setRedirect("/");
     setUser(null);
   }
 
@@ -28,22 +27,37 @@ export default function AccountPage() {
     return <Navigate to={"/login"} />;
   }
 
-
-  if(redirect){
-    return <Navigate to={redirect}/>
+  if (redirect) {
+    return <Navigate to={redirect} />;
   }
   return (
     <div>
       <AccountNav />
-      {subpage === 'profile' && (
+      {subpage === "profile" && (
         <div className="text-center max-w-lg mx-auto ">
-            Logged in as {user.name} ({user.email})
-            <button onClick={logout} className="primary max-w-sm mt-2">LogOut</button>
+          Logged in as {user.name} ({user.email})
+          <button onClick={logout} className="primary max-w-sm mt-2">
+            <h2 className="flex text-center p-1 justify-center items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9"
+                />
+              </svg>
+              LogOut
+            </h2>
+          </button>
         </div>
       )}
-      {subpage==='places' && (
-        <PlacesPage />
-      )}
+      {subpage === "places" && <PlacesPage />}
     </div>
   );
 }
