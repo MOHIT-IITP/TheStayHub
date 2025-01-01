@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <footer className=" text-white bg-gray-800 py-8 -m-8 mt-16 ">
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center">
+        <div className=" flex justify-around items-center flex-wrap gap-4  place-items-center">
           <div className="mb-3 items-start flex flex-col text-center">
             <h2 className="text-primary mb-3 text-lg font-bold">Support</h2>
             <p className="flex my-2 gap-1 justify-center">
