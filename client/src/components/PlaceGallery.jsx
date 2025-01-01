@@ -4,7 +4,7 @@ export default function PlaceGallery({ place }) {
 
   if (showAllPhotos) {
     return (
-      <div className="fixed bg-black text-white inset-0 overflow-auto min-h-full ">
+      <div className="top-0 z-999 fixed bg-black text-white inset-0 overflow-auto min-h-full ">
         <div className="p-8 bg-black grid gap-4">
           <div>
             <h2 className="text-3xl mr-48 font-extrabold">{place.title}</h2>

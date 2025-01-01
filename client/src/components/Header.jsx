@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import axios from "axios";
 export default function Header() {
-  const {user} = useContext(UserContext);
+  const { user } = useContext(UserContext);
   return (
     <header className="flex justify-between">
-      <Link to={'/'} href="" className="flex items-center gap-1 font-bold ">
+      <Link to={"/"} href="" className="flex items-center gap-1 font-bold ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -24,7 +24,7 @@ export default function Header() {
 
         <span>Wander Space</span>
       </Link>
-      <div className=" items-center flex gap-3 border border-gray-300 py-2 px-4 rounded-full shadow-md shadow-gray-300">
+      <div className=" items-center flex  gap-3 border border-gray-300 py-2 px-4 rounded-full shadow-md shadow-gray-300">
         <div>AnyWhere</div>
         <div className="border border-l border-gray-300"></div>
         <div>AnyWeek</div>
@@ -48,7 +48,7 @@ export default function Header() {
         </button>
       </div>
       <Link
-        to={user?'/account':'/login'}
+        to={user ? "/account" : "/login"}
         className="flex gap-3 border border-gray-300 items-center py-2 px-4 rounded-full  "
       >
         <svg
@@ -83,7 +83,7 @@ export default function Header() {
         </div>
         {!!user && (
           <div>
-            Hello, 
+            Hello,
             {user.name}
           </div>
         )}

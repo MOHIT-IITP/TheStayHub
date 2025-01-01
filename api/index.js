@@ -23,7 +23,7 @@ app.use(
   cors({
     credentials: true,
     origin: "http://localhost:5173", // adjust this if needed
-  })
+  }),
 );
 
 mongoose.connect(process.env.MONGO_URL);
@@ -31,7 +31,6 @@ mongoose.connect(process.env.MONGO_URL);
 app.get("/test", (req, res) => {
   res.json("test ok");
 });
-
 
 function getUserDataFromToken(req) {
   return new Promise((resolve, reject) => {
@@ -73,7 +72,7 @@ app.post("/login", async (req, res) => {
         (err, token) => {
           if (err) throw err;
           res.cookie("token", token).json(userDoc);
-        }
+        },
       );
     } else {
       res.status(422).json("pass not ok");
@@ -132,24 +131,39 @@ app.post("/upload", photosMiddleware.array("photos", 100), (req, res) => {
   }
 });
 
-app.post('/places', (req,res) => {
+app.post("/places", (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
-  const {token} = req.cookies;
+  const { token } = req.cookies;
   const {
-    title,address,addedPhotos,description,price,
-    perks,extraInfo,checkIn,checkOut,maxGuests,
+    title,
+    address,
+    addedPhotos,
+    description,
+    price,
+    perks,
+    extraInfo,
+    checkIn,
+    checkOut,
+    maxGuests,
   } = req.body;
   jwt.verify(token, jwtSecret, {}, async (err, userData) => {
     if (err) throw err;
     const placeDoc = await Place.create({
-      owner:userData.id,price,
-      title,address,photos:addedPhotos,description,
-      perks,extraInfo,checkIn,checkOut,maxGuests,
+      owner: userData.id,
+      price,
+      title,
+      address,
+      photos: addedPhotos,
+      description,
+      perks,
+      extraInfo,
+      checkIn,
+      checkOut,
+      maxGuests,
     });
     res.json(placeDoc);
   });
 });
-
 
 app.get("/user-places", async (req, res) => {
   const { token } = req.cookies;
@@ -187,7 +201,7 @@ app.put("/places", async (req, res) => {
       placeDoc.set({
         title,
         address,
-        photos: addedPhotos, 
+        photos: addedPhotos,
         description,
         perks,
         extraInfo,
@@ -202,26 +216,35 @@ app.put("/places", async (req, res) => {
   });
 });
 
-app.get('/places', async (req, res) => {
+app.get("/places", async (req, res) => {
   res.json(await Place.find());
 });
 
-app.post('/bookings', async (req, res)=>{
+app.post("/bookings", async (req, res) => {
   const userData = await getUserDataFromToken(req);
-  const {place, checkIn, checkOut, nubmerOfGuests, name, phone, price, } = req.body;
+  const { place, checkIn, checkOut, nubmerOfGuests, name, phone, price } =
+    req.body;
   BookingModel.create({
-    place, checkIn, checkOut, nubmerOfGuests, name, phone,price, user:userData.id,
-  }).then((doc)=>{
-    res.json(doc);
-  }).catch(err => {
-    throw err;
+    place,
+    checkIn,
+    checkOut,
+    nubmerOfGuests,
+    name,
+    phone,
+    price,
+    user: userData.id,
   })
+    .then((doc) => {
+      res.json(doc);
+    })
+    .catch((err) => {
+      throw err;
+    });
 });
 
-
-app.get('/bookings', async (req, res) => {
+app.get("/bookings", async (req, res) => {
   const userData = await getUserDataFromToken(req);
-  res.json( await BookingModel.find({user:userData.id}).populate('place'));
+  res.json(await BookingModel.find({ user: userData.id }).populate("place"));
 });
 
 app.listen(4000, (req, res) => console.log("Server is Running"));

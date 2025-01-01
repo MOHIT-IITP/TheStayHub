@@ -4,7 +4,6 @@ import axios from "axios";
 import LocationMap from "../components/LocationMap.jsx";
 import PlaceGallery from "../components/PlaceGallery.jsx";
 import BookingDates from "../components/BookingDate.jsx";
-import Footer from "../components/Footer.jsx";
 
 export default function BookingPage() {
   const { id } = useParams();

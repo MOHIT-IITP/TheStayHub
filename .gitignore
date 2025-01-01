@@ -1,0 +1,56 @@
+# Ignore node_modules for both backend and frontend
+/node_modules/
+/client/node_modules/
+
+# Ignore build and output folders (for frontend and backend)
+/dist/
+/client/dist/
+/backend/dist/
+/build/
+/client/build/
+/backend/build/
+
+# Ignore logs and temporary files
+*.log
+*.log.*
+*.tsbuildinfo
+
+# Ignore npm and yarn lock files in the frontend and backend
+package-lock.json
+yarn.lock
+
+# Ignore environment variable files
+/.env
+/.env.local
+/.env.*.local
+/.env.*.development
+/.env.*.production
+
+# Ignore IDE configuration files
+.vscode/
+/.idea/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore coverage and test reports
+/coverage/
+/client/coverage/
+/backend/coverage/
+/client/.nyc_output/
+/backend/.nyc_output/
+
+# Ignore Docker-related files
+docker-compose.override.yml
+Dockerfile
+docker-compose.yml
+
+# Ignore compiled TypeScript files if applicable
+*.tsbuildinfo
+*.d.ts
+
+# Ignore other files that may be specific to your development setup
+*.swp
+*.swo
+

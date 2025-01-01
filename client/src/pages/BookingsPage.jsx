@@ -22,7 +22,7 @@ export default function BookingsPage() {
   return (
     <div>
       <AccountNav />
-      <div>
+      <div className="min-h-96">
         {bookings?.length > 0 &&
           bookings.map((booking) => (
             <Link
