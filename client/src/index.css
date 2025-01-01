@@ -3,22 +3,33 @@
 @tailwind utilities;
 
 body {
-  font-family: 'poppins', sans-serif;
+  font-family: "poppins", sans-serif;
 }
 
-input[type="text"], input[type="password"],input[type="email"],input[type='number'],input[type='tel'] textarea{
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="tel"] textarea {
   @apply w-full border my-2 py-2 px-3 rounded-md;
 }
-textarea{
+
+input[type="text"] {
+  @apply w-full border my-2 py-2 px-3 rounded-md;
+}
+textarea {
+  @apply w-full border my-2 py-2 px-3 rounded-md;
   height: 140px;
 }
-button{
-  @apply bg-gray-200; 
+
+button {
+  @apply bg-gray-200;
 }
-input[type="tel"]{
+input[type="tel"] {
   @apply w-full border my-2 py-2 px-3 rounded-md;
 }
-button.primary{
+button.primary {
   background-color: cyan;
-  @apply bg-primary p-2 w-full rounded-lg ; 
+  @apply bg-primary p-2 w-full rounded-lg;
 }
+
