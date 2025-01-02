@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../UserContext";
-import axios from "axios";
 export default function Header() {
   const { user } = useContext(UserContext);
   return (
@@ -22,30 +21,30 @@ export default function Header() {
           />
         </svg>
 
-        <span>Wander Space</span>
+        <span className="text-xl font-extrabold">Wander Space</span>
       </Link>
-      <div className=" items-center flex  gap-3 border border-gray-300 py-2 px-4 rounded-full shadow-md shadow-gray-300">
+      <div className=" hidden items-center flex  gap-3 border border-gray-300 py-2 px-4 rounded-full shadow-md shadow-gray-300">
         <div>AnyWhere</div>
         <div className="border border-l border-gray-300"></div>
         <div>AnyWeek</div>
-        <div className="border border-l border-gray-300"></div>
-        <div>Add Person</div>
-        <button className=" bg-primary text-black p-2 rounded-full">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-3 h-3"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-            />
-          </svg>
-        </button>
+        <div className="flex">
+          <button className="p-2 rounded-full bg-primary ">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className=" w-5 h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
       <Link
         to={user ? "/account" : "/login"}

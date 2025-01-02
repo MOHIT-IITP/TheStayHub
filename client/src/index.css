@@ -5,6 +5,9 @@
 body {
   font-family: "poppins", sans-serif;
 }
+.special-input {
+  @apply !rounded-full  !shadow-gray-300 shadow;
+}
 
 input[type="text"],
 input[type="password"],
@@ -32,4 +35,3 @@ button.primary {
   background-color: cyan;
   @apply bg-primary p-2 w-full rounded-lg;
 }
-
