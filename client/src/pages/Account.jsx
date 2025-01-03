@@ -34,8 +34,12 @@ export default function AccountPage() {
     <div>
       <AccountNav />
       {subpage === "profile" && (
-        <div className="text-center max-w-lg mx-auto ">
-          Logged in as {user.name} ({user.email})
+        <div className="text-xl cursor-pointer text-center max-w-lg mx-auto ">
+          Logged in as
+          <span className="font-bold m-1 ">
+           {user.name}
+          </span>
+          <span className="text-gray-500  ">({user.email})</span>
           <button onClick={logout} className="primary max-w-sm mt-2">
             <h2 className="flex text-center p-1 justify-center items-center gap-2">
               <svg
