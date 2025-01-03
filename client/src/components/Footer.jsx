@@ -183,6 +183,9 @@ export default function Footer() {
             MOHIT-IITP
           </a>
         </div>
+        <div className="flex justify-center items-center">
+          &copy; {new Date().getFullYear()} Wander Space. All rights reserved.
+        </div>
       </div>
     </footer>
   );
