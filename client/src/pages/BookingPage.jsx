@@ -31,6 +31,7 @@ export default function BookingPage() {
         <div>
           Your booking infromation:
           <BookingDates booking={booking} className="mt-3" />
+          <h2 className="mt-4 font-bold text-2xl">{booking.name}</h2>
         </div>
         <div>
           <p>Total price </p>
