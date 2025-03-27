@@ -1,6 +1,6 @@
 export default function LocationMap({ place, className = null }) {
   if (!className) {
-    className = " my-3 block ";
+    className = " my-3 block bg-white p-3 rounded-2xl ";
   }
   className += " flex gap-1 font-semibold underline ";
   return (

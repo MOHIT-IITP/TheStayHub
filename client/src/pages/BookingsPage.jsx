@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import AccountNav from "../components/AccountNav.jsx";
 import axios from "axios";
 import PlaceImg from "../components/PlaceImg.jsx";
-import { differenceInCalendarDays, format } from "date-fns";
 import { Link } from "react-router-dom";
 import BookingDates from "../components/BookingDate.jsx";
 import Footer from "../components/Footer.jsx";
@@ -16,21 +15,21 @@ export default function BookingsPage() {
         setBookings(response.data);
       })
       .catch((error) => {
-        console.log("Error hai bhai ", error);
+        console.log("Error: ", error);
       });
   }, []);
   return (
     <div>
       <AccountNav />
-      <div className="min-h-96">
+      <div className="min-h-96 p-10 rounded-[30px] bg-neutral-200 ">
         {bookings?.length > 0 &&
           bookings.map((booking) => (
             <Link
               to={`/account/bookings/${booking._id}`}
               key={booking._id}
-              className="flex gap-8 mt-4 bg-gray-200 rounded-2xl"
+              className="flex gap-8 mt-4 p-4 shadow-lg bg-white rounded-[30px]"
             >
-              <div className="w-48">
+              <div className="w-48 p-2">
                 <PlaceImg place={booking.place} />
               </div>
               <div className="grow pr-3 ">

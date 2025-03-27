@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import {motion} from "framer-motion"
 import axios from "axios";
 import Footer from "../components/Footer.jsx";
 export default function IndexPage() {
@@ -15,7 +16,7 @@ export default function IndexPage() {
   return (
     <>
       <div>
-        <div className="flex justify-center items-center absolute  top-2 ml-[43%] mr-[40%]">
+        <div className="flex justify-center items-center absolute top-2 ml-[43%] mr-[40%]">
           <button className="bg-primary rounded-full p-1 mr-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +41,7 @@ export default function IndexPage() {
           />
         </div>
       </div>
-      <div className=" mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="p-10 rounded-[30px] bg-neutral-200 mt-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-20">
         {places.length > 0 &&
           places
             .filter((it) => {
@@ -49,21 +50,26 @@ export default function IndexPage() {
                 : it.address.toLowerCase().includes(search.toLowerCase());
             })
             .map((place) => (
-              <Link to={"/place/" + place._id}>
-                <div className="bg-gray-500 flex rounded-2xl ">
+              <Link to={"/place/" + place._id} className="bg-white shadow-lg rounded-[30px] p-10">
+                <div className="bg-gray-500 flex rounded-[30px] overflow-hidden">
                   {place.photos?.[0] && (
-                    <img
-                      className="rounded-2xl aspect-square object-cover"
-                      src={place.photos[0]}
-                      alt=""
-                    />
+                    <motion.div
+                      transition={{ ease: "easeIn", duration: 0.2 }}
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      <img
+                        className="rounded-[30px] aspect-square object-cover"
+                        src={place.photos[0]}
+                        alt=""
+                      />
+                    </motion.div>
                   )}
                 </div>
                 <div>
-                  <h3 className="font-bold">{place.address}</h3>
+                  <h3 className="font-bold mt-8">{place.address}</h3>
                   <h2 className="text-gray-600">{place.title}</h2>
                   <div className="mt-2">
-                    <span className="font-bold mr-1">₹{place.price}</span>
+                    <span className="font-bold text-2xl mr-1">₹ {place.price} /- </span>
                     per night
                   </div>
                 </div>

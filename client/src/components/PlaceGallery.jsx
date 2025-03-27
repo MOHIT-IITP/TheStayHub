@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {motion} from "framer-motion";
 export default function PlaceGallery({ place }) {
   const [showAllPhotos, setShowAllPhotos] = useState(false);
 
@@ -76,9 +77,11 @@ export default function PlaceGallery({ place }) {
           )}
         </div>
       </div>
-      <button
+      <motion.button
         onClick={() => setShowAllPhotos(true)}
-        className="absolute flex gap-2 shadow-gray-400 bottom-4 right-8 py-2 px-4 rounded-2xl"
+        className="hover:bg-neutral-800 hover:text-white absolute flex gap-2 shadow-gray-400 bottom-4 right-8 py-2 px-4 rounded-2xl"
+        transition={{ease:"easeIn" , duration: 0.3}}
+        whileHover={{scale:1.02}}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +96,7 @@ export default function PlaceGallery({ place }) {
           />
         </svg>
         Show all photos
-      </button>
+      </motion.button>
     </div>
   );
 }

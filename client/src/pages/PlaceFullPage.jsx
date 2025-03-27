@@ -26,9 +26,9 @@ export default function PlaceFullPage() {
       <LocationMap place={place} />
       <PlaceGallery place={place} />
       <div className="grid grid-cols-1 gap-8 md:grid-cols-[2fr_1fr]">
-        <div className=" mb-8 mt-4">
+        <div className=" mb-8 p-8 rounded-3xl shadow-sm bg-white mt-4">
           <div className="my-4 ">
-            <h2 className="font-semibold text-2xl">Description: </h2>
+            <h2 className="font-semibold text-3xl">Description: </h2>
             {place.description}
           </div>
           Check-in: {place.checkIn} <br />
