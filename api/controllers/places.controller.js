@@ -51,6 +51,8 @@ const handlePlaces = async (req, res) => {
   });
 };
 
+
+// if you want to end the details in your hotels
 const handlePlacesPut = async (req, res) => {
   const { token } = req.cookies;
   const {

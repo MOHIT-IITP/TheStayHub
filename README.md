@@ -1,7 +1,7 @@
 
-# WanderSpace - Hotel Listing and Booking Application
+# TheStayHub - Hotel Listing and Booking Application
 
-WanderSpace is a full-stack web application built using the MERN (MongoDB, Express, React, Node.js) stack. It allows users to search for, list, and book hotels for their next trip, making the process seamless for both travelers and hotel owners.
+TheStayHub is a full-stack web application built using the MERN (MongoDB, Express, React, Node.js) stack. It allows users to search for, list, and book hotels for their next trip, making the process seamless for both travelers and hotel owners.
 
 ## Features
 
