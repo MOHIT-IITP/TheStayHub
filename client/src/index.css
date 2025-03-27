@@ -33,5 +33,5 @@ input[type="tel"] {
 }
 button.primary {
   background-color: cyan;
-  @apply bg-primary p-2 w-full rounded-lg;
+  @apply bg-primary p-2 w-full rounded-full;
 }
