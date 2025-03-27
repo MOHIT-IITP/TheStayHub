@@ -62,4 +62,4 @@ app.post("/upload", photosMiddleware.array("photos", 100), async (req, res) => {
   }
 });
 
-app.listen(4000, (req, res) => console.log("Server is Running"));
+app.listen(process.env.PORT, (req, res) => console.log("Server is Running"));
