@@ -125,14 +125,14 @@ export default function PlacesFormPage() {
               type="text"
               value={checkIn}
               onChange={(e) => setCheckIn(e.target.value)}
-              placeholder="3:00"
+              placeholder="3"
             />
           </div>
           <div>
             <h3 className="mt-2 -mb-1"> Check out Time</h3>
             <input
               type="text"
-              placeholder="12:00"
+              placeholder="12"
               value={checkOut}
               onChange={(e) => setCheckOut(e.target.value)}
             />

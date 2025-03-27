@@ -39,41 +39,41 @@ export default function PlaceGallery({ place }) {
   }
 
   return (
-    <div className="relative ">
-      <div className="grid gap-2 grid-cols-[2fr_1fr]  rounded-2xl overflow-hidden">
-        <div>
+    <div className="relative">
+      <div className="grid grid-cols-3 gap-2 h-[80vh] rounded-2xl overflow-hidden">
+        <div className="col-span-2">
           {place.photos?.[0] && (
-            <div key={place.photos[0]}>
+            <div key={place.photos[0]} className="h-full">
               <img
                 onClick={() => setShowAllPhotos(true)}
-                className="aspect-square cursor-pointer object-cover"
+                className="cursor-pointer object-cover h-full w-full"
                 src={place.photos[0]}
                 alt=""
               />
             </div>
           )}
         </div>
-        <div className="flex">
+        <div className="flex flex-col gap-2">
           {place.photos?.[1] && (
-            <div key={place.photos[1]}>
+            <div key={place.photos[1]} className="h-1/2">
               <img
                 onClick={() => setShowAllPhotos(true)}
-                className="cursor-pointer aspect-square object-cover"
+                className="cursor-pointer object-cover h-full w-full"
                 src={place.photos[1]}
                 alt=""
               />
             </div>
           )}
-          <div className="flex overflow-hidden">
-            {place.photos?.[2] && (
+          {place.photos?.[2] && (
+            <div key={place.photos[2]} className="h-1/2">
               <img
                 onClick={() => setShowAllPhotos(true)}
-                className="aspect-square object-cover cursor-pointer"
+                className="cursor-pointer object-cover h-full w-full"
                 src={place.photos[2]}
                 alt=""
               />
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
       <button
