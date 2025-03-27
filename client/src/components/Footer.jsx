@@ -9,7 +9,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className=" text-white bg-gray-800 py-8 -m-8 mt-16 ">
+    <footer className=" text-white bg-neutral-900 py-8 -m-8 mt-16 ">
       <div className="container mx-auto">
         <div className=" flex justify-around items-center flex-wrap gap-4  place-items-center">
           <div className="mb-3 items-start flex flex-col text-center">
@@ -51,9 +51,9 @@ export default function Footer() {
           </div>
           <div className="mb-3 items-start flex flex-col text-center">
             <Link to={"/"} className="mb-3 text-primary text-lg font-bold">
-              Wander Space
+            TheStayHub
             </Link>
-            <Link className="flex gap-1 my-2 justify-center" to={"/account"}>
+            <Link className="flex gap-1 my-2 justify-center hover:text-primary" to={"/account"}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -72,7 +72,7 @@ export default function Footer() {
             </Link>
             <Link
               to={"/account/bookings"}
-              className="flex gap-1 justify-center"
+              className="hover:text-primary flex gap-1 justify-center"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -125,20 +125,13 @@ export default function Footer() {
                   d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
                 />
               </svg>
-              WanderSpace@gmail.com
+              abc@gmail.com
             </p>
           </div>
         </div>
         <div className="flex gap-12  mt-8 items-center justify-center">
           <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaFacebook className="text-white hover:text-blue-800 text-2xl" />
-          </a>
-          <a
-            href="https://twitter.com"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -152,18 +145,11 @@ export default function Footer() {
             <FaInstagram className="text-white-600 hover:text-pink-600 text-2xl" />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/mohit-kumar-04aa41252/"
             target="_blank"
             rel="noopener noreferrer"
           >
             <FaLinkedin className="text-white-700 hover:text-blue-600 text-2xl" />
-          </a>
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaYoutube className="text-white-600 hover:text-red-600 text-2xl" />
           </a>
         </div>
         <div className="flex justify-center items-center mt-4">
@@ -173,18 +159,18 @@ export default function Footer() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="size-6"
+              className="size-10 hover:bg-red-700 animate-bounce p-2 rounded-md"
             >
               <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
             </svg>
           </span>{" "}
           &nbsp; by{" "}
-          <a className="p-2" href="https://github.com/MOHIT-IITP">
+          <a className="p-2 hover:text-red-600" href="https://github.com/MOHIT-IITP">
             MOHIT-IITP
           </a>
         </div>
         <div className="flex justify-center items-center">
-          &copy; {new Date().getFullYear()} Wander Space. All rights reserved.
+          &copy; {new Date().getFullYear()} TheStayHub. All rights reserved.
         </div>
       </div>
     </footer>
