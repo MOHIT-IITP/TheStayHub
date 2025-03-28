@@ -31,8 +31,16 @@ app.use('/',PlaceRouter);
 
 mongoose.connect(process.env.MONGO_URL);
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/tmp');  // Use the writable /tmp directory
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  }
+});
 
-const photosMiddleware = multer({ dest: "uploads/" });
+const photosMiddleware = multer({ storage: storage });
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
