@@ -41,7 +41,7 @@ export default function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="primary">Login</button>
+          <button className="primary text-white hover:shadow-lg">Login</button>
           <div className="mt-4">
             Don't have an account?{" "}
             <Link className="text-gray-600" to={"/register"}>
