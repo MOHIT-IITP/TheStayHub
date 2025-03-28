@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin:["https://the-stay-hub-frontend.vercel.app"], // adjust this if needed
+    origin: process.env.VITE_FRONTEND_URL,
     credentials: true,
   }),
 );
