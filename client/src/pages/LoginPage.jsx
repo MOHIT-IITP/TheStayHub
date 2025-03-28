@@ -25,8 +25,8 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="mt-4 grow flex items-center  justify-center">
-      <div className="-mt-32  px-10 py-40 bg-neutral-100 rounded-3xl">
+    <div className="mt-4 grow flex items-center justify-center ">
+      <div className="-mt-32  px-10 py-40 bg-neutral-100 shadow-xl rounded-3xl">
         <h1 className="text-7xl mb-20 animate-pulse font-bold text-center">Login</h1>
         <form action="" className="max-w-md mx-auto" onSubmit={handleLogin}>
           <input

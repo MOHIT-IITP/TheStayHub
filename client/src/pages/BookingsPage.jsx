@@ -21,13 +21,13 @@ export default function BookingsPage() {
   return (
     <div>
       <AccountNav />
-      <div className="min-h-96 p-10 rounded-[30px] bg-neutral-200 ">
+      <div className="min-h-96 p-10 rounded-[30px]">
         {bookings?.length > 0 &&
           bookings.map((booking) => (
             <Link
               to={`/account/bookings/${booking._id}`}
               key={booking._id}
-              className="flex gap-8 mt-4 p-4 shadow-lg bg-white rounded-[30px]"
+              className="flex gap-8 mt-4 p-4 shadow-lg bg-violet-100 rounded-[30px]"
             >
               <div className="w-48 p-2">
                 <PlaceImg place={booking.place} />

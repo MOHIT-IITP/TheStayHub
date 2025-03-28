@@ -9,7 +9,9 @@ export default function PlaceGallery({ place }) {
       <div className="p-8 bg-black grid gap-4">
         <div>
         <h2 className="text-3xl mr-48 font-extrabold">{place.title}</h2>
-        <button
+        <motion.button
+        whileHover={{scale: 1.1, backgroundColor:"#323232", color:"white"}}
+        transition={{ease: "easeIn", duration:0.3}}
           onClick={() => setShowAllPhotos(false)}
           className=" right-8 top-6 shadow-grey-500 flex gap-1 py-2 px-4 rounded-2xl bg-white text-black fixed "
         >
@@ -26,7 +28,7 @@ export default function PlaceGallery({ place }) {
           />
           </svg>
           Close Photos
-        </button>
+        </motion.button>
         </div>
         {place?.photos?.length > 0 &&
         place.photos.map((photo) => (

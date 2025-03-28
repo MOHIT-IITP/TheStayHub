@@ -22,27 +22,37 @@ export default function RegisterPage() {
 
   return (
     <div className="mt-4 grow flex items-center justify-center ">
-      <div className="-mt-32 px-10 py-40 bg-neutral-100 rounded-3xl">
+      <div className="-mt-32 px-10 py-40 bg-neutral-100 shadow-xl rounded-3xl">
         <h1 className="text-7xl animate-pulse font-bold mb-20 text-center">Register</h1>
         <form action="" onSubmit={registerUser} className="max-w-md mx-auto">
+          <div className="mt-4">
+
+          <label htmlFor="">Name</label>
           <input
             type="text"
             placeholder="Mohit Kumar"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
+          </div>
+          <div className="mt-4">
+          <label htmlFor="">Email</label>
           <input
             type="email"
             placeholder="Your@email.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          </div>
+          <div className="mt-4">
+          <label htmlFor="">Password</label>
           <input
             type="password"
             placeholder="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          </div>
           <button className="primary text-white hover:shadow-lg">Register</button>
           <div className="mt-4">
             Alrady have an account?{" "}
