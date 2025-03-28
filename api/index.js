@@ -42,6 +42,10 @@ const storage = multer.diskStorage({
 
 const photosMiddleware = multer({ storage: storage });
 
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
