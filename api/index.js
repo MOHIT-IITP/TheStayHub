@@ -15,10 +15,11 @@ const cloudinary = require("cloudinary").v2;
 
 app.use(express.json());
 app.use(cookieParser());
+const frontend = process.env.VITE_FRONTEND_URL;
 
 app.use(
   cors({
-    origin: process.env.VITE_FRONTEND_URL,
+    origin:frontend ,
     credentials: true,
     methods: ["GET", "POST","PUT","DELETE"],
   }),
