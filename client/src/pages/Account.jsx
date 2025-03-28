@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import PlacesPage from "./PlacesPage";
 import AccountNav from "../components/AccountNav";
+import { BackendUrl } from "./PlaceFullPage";
 
 export default function AccountPage() {
   const { ready, user, setUser } = useContext(UserContext);
@@ -15,7 +16,7 @@ export default function AccountPage() {
   }
 
   async function logout() {
-    await axios.post("/logout");
+    await axios.post(BackendUrl + "/logout");
     setRedirect("/");
     setUser(null);
   }

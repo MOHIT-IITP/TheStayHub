@@ -5,6 +5,8 @@ import axios from "axios";
 import { Navigate, useParams } from "react-router-dom";
 import AccountNav from "../components/AccountNav";
 
+const BackendUrl = import.meta.env.VITE_BACKEND_URL
+
 export default function PlacesFormPage() {
   const { id } = useParams();
   const [title, setTitle] = useState("");
@@ -21,7 +23,7 @@ export default function PlacesFormPage() {
 
   useEffect(() => {
     if (!id) return;
-    axios.get("/places/" + id).then((response) => {
+    axios.get( BackendUrl + "/places/" + id).then((response) => {
       const { data } = response;
       setTitle(data.title);
       setAddress(data.address);
@@ -66,12 +68,12 @@ export default function PlacesFormPage() {
         price,
     }
     if (id) {
-      await axios.put("/places", {
+      await axios.put(BackendUrl + "/places", {
         id,...placeData
       });
       setRedirect(true);
     } else {
-      await axios.post("/places", placeData);
+      await axios.post(BackendUrl + "/places", placeData);
       setRedirect(true);
     }
   }

@@ -3,11 +3,11 @@ import { useEffect, useState } from "react";
 import {motion} from "framer-motion"
 import axios from "axios";
 import Footer from "../components/Footer.jsx";
+import { BackendUrl } from "./PlaceFullPage.jsx";
 export default function IndexPage() {
   const [places, setPlaces] = useState([]);
   const [search, setSearch] = useState("");
 
-  const BackendUrl = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
     axios.get(BackendUrl + "/places").then((response) => {
       setPlaces(response.data);

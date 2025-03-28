@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import { BackendUrl } from "../pages/PlaceFullPage";
 export default function PhotosUploader({ addedPhotos, onChange }) {
 
   function uploadPhoto(ev) {
@@ -8,7 +9,7 @@ export default function PhotosUploader({ addedPhotos, onChange }) {
     for (let i = 0; i < files.length; i++) {
       data.append('photos', files[i]);
     }
-    axios.post('/upload', data, {
+    axios.post(BackendUrl + '/upload', data, {
       headers: {'Content-type':'multipart/form-data'}
     }).then(response => {
       const {data:filenames} = response;

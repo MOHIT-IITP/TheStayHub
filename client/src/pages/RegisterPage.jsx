@@ -6,10 +6,12 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const BackendUrl = import.meta.env.VITE_BACKEND_URL
+
   async function registerUser(e) {
     e.preventDefault();
     try {
-      await axios.post("/register", {
+      await axios.post(BackendUrl + "/register", {
         name,
         email,
         password,

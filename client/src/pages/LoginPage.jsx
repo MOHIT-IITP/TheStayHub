@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
+import { BackendUrl } from "./PlaceFullPage";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -12,7 +13,7 @@ export default function LoginPage() {
   async function handleLogin(e){
     e.preventDefault();
     try {
-        const {data} = await axios.post('/login', {email, password});
+        const {data} = await axios.post(BackendUrl + '/login', {email, password});
         setUser(data);
         alert("Login Successfull")
         setRedirect(true);

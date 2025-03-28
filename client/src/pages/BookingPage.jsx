@@ -5,12 +5,14 @@ import LocationMap from "../components/LocationMap.jsx";
 import PlaceGallery from "../components/PlaceGallery.jsx";
 import BookingDates from "../components/BookingDate.jsx";
 
+import { BackendUrl } from "./PlaceFullPage.jsx";
+
 export default function BookingPage() {
   const { id } = useParams();
   const [booking, setBooking] = useState(null);
   useEffect(() => {
     if (id) {
-      axios.get("/bookings").then((response) => {
+      axios.get(BackendUrl + "/bookings").then((response) => {
         const foundBooking = response.data.find(({ _id }) => _id === id);
         if (foundBooking) {
           setBooking(foundBooking);

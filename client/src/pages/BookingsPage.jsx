@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 import BookingDates from "../components/BookingDate.jsx";
 import Footer from "../components/Footer.jsx";
 
+import { BackendUrl } from "./PlaceFullPage.jsx";
+
 export default function BookingsPage() {
   const [bookings, setBookings] = useState([]);
   useEffect(() => {
     axios
-      .get("/bookings")
+      .get(BackendUrl + "/bookings")
       .then((response) => {
         setBookings(response.data);
       })

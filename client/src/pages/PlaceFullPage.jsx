@@ -5,6 +5,8 @@ import BookingForm from "../components/BookingForm.jsx";
 import PlaceGallery from "../components/PlaceGallery.jsx";
 import LocationMap from "../components/LocationMap.jsx";
 
+export const BackendUrl = import.meta.env.VITE_BACKEND_URL
+
 export default function PlaceFullPage() {
   const { id } = useParams();
   const [place, setPlace] = useState(null);
@@ -12,7 +14,7 @@ export default function PlaceFullPage() {
     if (!id) {
       return;
     }
-    axios.get(`/places/${id}`).then((response) => {
+    axios.get(BackendUrl + `/places/${id}`).then((response) => {
       setPlace(response.data);
     });
   }, [id]);
