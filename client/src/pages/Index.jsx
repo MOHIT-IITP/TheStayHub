@@ -7,8 +7,9 @@ export default function IndexPage() {
   const [places, setPlaces] = useState([]);
   const [search, setSearch] = useState("");
 
+  const BackendUrl = import.meta.env.VITE_BACKEND_URL;
   useEffect(() => {
-    axios.get("/places").then((response) => {
+    axios.get(BackendUrl + "/places").then((response) => {
       setPlaces(response.data);
     });
   }, []);
