@@ -61,5 +61,6 @@ app.post("/upload", photosMiddleware.array("photos", 100), async (req, res) => {
     res.status(400).json({ message: "No files uploaded" });
   }
 });
+const PORT = process.env.PORT || 4000;
 
-app.listen(process.env.PORT, (req, res) => console.log("Server is Running"));
+app.listen(PORT, (req, res) => console.log("Server is Running"));
