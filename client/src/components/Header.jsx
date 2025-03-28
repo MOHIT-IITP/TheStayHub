@@ -5,6 +5,8 @@ export default function Header() {
   const { user } = useContext(UserContext);
   return (
     <header className="flex justify-between flex-wrap">
+
+      {/* left section logo section */}
       <Link to={"/"} href="" className="flex items-center gap-1 font-bold ">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -21,11 +23,13 @@ export default function Header() {
           />
         </svg>
 
-        <span className="text-xl font-extrabold">TheStayHub</span>
+        <span className="text-xl font-extrabold">TheStay<span className="text-primary">Hub</span></span>
       </Link>
+
+      {/* right section profile section */}
       <Link
         to={user ? "/account" : "/login"}
-        className=" flex hover:shadow-xl bg-gray-300   gap-3 border border-gray-300 items-center py-2 px-4 rounded-full  "
+        className=" flex hover:shadow-xl bg-violet-200   gap-3 border border-gray-300 items-center py-2 px-4 rounded-full  "
       >
         <div>
           <svg
@@ -45,8 +49,9 @@ export default function Header() {
         </div>
         {!!user && (
           <div>
-            Hello,
-            {user.name}
+            <span className="text-xl ml-1 ">
+              {user.name}
+            </span>
           </div>
         )}
       </Link>

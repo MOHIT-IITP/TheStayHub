@@ -9,7 +9,7 @@ export default function PlaceImg({ place, index = 0, className = null }) {
   return (
     <motion.div whileHover={{scale:1.2}}>
     <img
-      className="object-cover w-full  h-full rounded-2xl"
+      className="object-cover aspect-square  w-full  h-full rounded-2xl"
       src={place.photos[0]}
       alt=""
       onError={(e) => {

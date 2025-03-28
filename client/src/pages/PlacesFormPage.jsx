@@ -37,7 +37,7 @@ export default function PlacesFormPage() {
   }, [id]);
 
   function inputHeader(text) {
-    return <h2 className="text-2xl mt-4">{text}</h2>;
+    return <h2 className="text-2xl font-semibold text-primary mt-4">{text}</h2>;
   }
   function inputDescription(text) {
     return <p className="text-gray-500 text-sm">{text}</p>;
@@ -154,7 +154,7 @@ export default function PlacesFormPage() {
             />
           </div>
         </div>
-        <button className="primary my-4">Save</button>
+        <button className="primary my-4 text-white">Save</button>
       </form>
     </div>
   );

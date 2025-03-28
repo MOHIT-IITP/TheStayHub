@@ -40,8 +40,8 @@ export default function AccountPage() {
            {user.name}
           </span>
           <span className="text-gray-500  ">({user.email})</span>
-          <button onClick={logout} className="primary max-w-sm mt-2">
-            <h2 className="flex text-center p-1 justify-center items-center gap-2">
+          <button onClick={logout} className="primary hover:shadow-lg max-w-sm mt-2">
+            <h2 className="flex text-center p-1 text-white justify-center hover:animate-pulse items-center gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

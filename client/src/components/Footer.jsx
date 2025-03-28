@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
+import {motion} from "framer-motion";
 import {
-  FaFacebook,
   FaTwitter,
   FaInstagram,
   FaLinkedin,
-  FaYoutube,
 } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <footer className=" text-white bg-neutral-900 py-8 -m-8 mt-16 ">
-      <div className="container mx-auto">
         <div className=" flex justify-around items-center flex-wrap gap-4  place-items-center">
           <div className="mb-3 items-start flex flex-col text-center">
             <h2 className="text-primary mb-3 text-lg font-bold">Support</h2>
@@ -129,6 +127,7 @@ export default function Footer() {
             </p>
           </div>
         </div>
+        <div className="flex flex-col justify-center items-center mt-10">
         <div className="flex gap-12  mt-8 items-center justify-center">
           <a
             href="#"
@@ -152,7 +151,7 @@ export default function Footer() {
             <FaLinkedin className="text-white-700 hover:text-blue-600 text-2xl" />
           </a>
         </div>
-        <div className="flex justify-center items-center mt-4">
+        <div className="flex justify-center  items-center mt-4">
           Made with{"  "} &nbsp;
           <span>
             <svg
@@ -172,7 +171,10 @@ export default function Footer() {
         <div className="flex justify-center items-center">
           &copy; {new Date().getFullYear()} TheStayHub. All rights reserved.
         </div>
-      </div>
+        </div>
+        <div className="text-[10rem] font-bold flex justify-center p-10 items-center mt-10">
+          TheStay <span className="text-primary">Hub</span>
+        </div>
     </footer>
   );
 }
