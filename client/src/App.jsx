@@ -8,6 +8,7 @@ import { UserContextProvider } from "./UserContext";
 import AccountPage from "./pages/Account";
 import PlacesPage from "./pages/PlacesPage";
 import PlacesFormPage from "./pages/PlacesFormPage";
+import "@fontsource/poppins";
 import PlaceFullPage from "./pages/PlaceFullPage";
 import BookingsPage from "./pages/BookingsPage";
 import BookingPage from "./pages/BookingPage";
