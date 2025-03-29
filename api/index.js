@@ -20,7 +20,8 @@ app.use(cookieParser());
 
 
 app.use(cors({
-  origin: 'https://the-stay-hub-cvn7.vercel.app'
+  origin: 'https://the-stay-hub-cvn7.vercel.app',
+  credentials: true,
 }));
 
 
