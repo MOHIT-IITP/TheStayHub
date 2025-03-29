@@ -16,15 +16,20 @@ const cloudinary = require("cloudinary").v2;
 app.use(express.json());
 app.use(cookieParser());
 
-const allowedOrigins = process.env.FRONTEND;
+// const allowedOrigins = process.env.FRONTEND;
 
 
-app.use(
-  cors({
-    origin:allowedOrigins ,
-    credentials: true,
-  }),
-);
+app.use(cors({
+  origin: 'https://the-stay-hub-cvn7.vercel.app'
+}));
+
+
+// app.use(
+//   cors({
+//     origin:allowedOrigins ,
+//     credentials: true,
+//   }),
+// );
 
 
 // All Router
