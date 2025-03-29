@@ -16,7 +16,7 @@ const cloudinary = require("cloudinary").v2;
 app.use(express.json());
 app.use(cookieParser());
 
-const allowedOrigins = process.env.VITE_FRONTEND_URL;
+const allowedOrigins = process.env.FRONTEND;
 
 
 app.use(
