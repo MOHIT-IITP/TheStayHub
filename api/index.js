@@ -4,7 +4,6 @@ require("dotenv").config();
 const app = express();
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const imageDownloader = require("image-downloader");
 const multer = require("multer");
 const fs = require("fs");
 const AuthRouter = require("./routes/auth.routes.js");
@@ -16,24 +15,13 @@ const cloudinary = require("cloudinary").v2;
 app.use(express.json());
 app.use(cookieParser());
 
-// const allowedOrigins = process.env.FRONTEND;
-
 
 app.use(cors({
-  origin: 'https://the-stay-hub-frontend.vercel.app',
+    origin: 'http://localhost:5173',
   credentials: true,
 }));
 
 
-// app.use(
-//   cors({
-//     origin:allowedOrigins ,
-//     credentials: true,
-//   }),
-// );
-
-
-// All Router
 app.use("/", AuthRouter);
 app.use('/', ProfileRouter);
 app.use('/',PlaceRouter);
