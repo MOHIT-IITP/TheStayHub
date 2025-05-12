@@ -4,13 +4,16 @@ const bcryptSalt = bcrypt.genSaltSync(10);
 const mongoose = require("mongoose")
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const jwtSecret = "23423@@#$2343@#$%@$";
+const jwtsecret = process.env.JWT_SECRET;
 
 const handleLogin = async (req, res) => {
-  mongoose.connect(process.env.MONGO_URL);
-  const { email, password } = req.body;
-  const userDoc = await User.findOne({ email });
-  if (userDoc) {
+  try {
+    // Remove mongoose.connect from here; connect once in your app entry point
+    const { email, password } = req.body;
+    const userDoc = await User.findOne({ email });
+    if (!userDoc) {
+      return res.status(400).json({ message: "User not found Please Register First" });
+    }
     const passOk = bcrypt.compareSync(password, userDoc.password);
     if (passOk) {
       jwt.sign(
@@ -18,20 +21,22 @@ const handleLogin = async (req, res) => {
           email: userDoc.email,
           id: userDoc._id,
         },
-        jwtSecret,
+        jwtsecret,
         {},
         (err, token) => {
-          if (err) throw err;
+          if (err) {
+            return res.status(500).json({ message: "Token generation failed" });
+          }
           res.cookie("token", token).json(userDoc);
-        },
+        }
       );
     } else {
-      res.status(422).json("pass not ok");
+      res.status(422).json({ message: "Password is incorrect" });
     }
-  } else {
-    res.json("not found");
+  } catch (error) {
+    res.status(500).json({ message: "Internal server error", error: error.message });
   }
-} 
+}
 
  const handleRegister = async( req, res) => {
   const { name, email, password } = req.body;

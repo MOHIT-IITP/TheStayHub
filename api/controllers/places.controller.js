@@ -1,23 +1,21 @@
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
-const bcryptSalt = bcrypt.genSaltSync(10);
-const mongoose = require("mongoose");
-require("dotenv").config();
-const jwt = require("jsonwebtoken");
-const Place = require("../models/place");
-const BookingModel = require("../models/booking");
-const jwtSecret = "23423@@#$2343@#$%@$";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+import Place from "../models/place.js";
+import BookingModel from "../models/booking.js";
+dotenv.config();
+const jwtsecret = process.env.JWT_SECRET;
 
-function getUserDataFromToken(req) {
+export function getUserDataFromToken(req) {
   return new Promise((resolve, reject) => {
-    jwt.verify(req.cookies.token, jwtSecret, {}, async (err, userData) => {
+    jwt.verify(req.cookies.token, jwtsecret, {}, async (err, userData) => {
       if (err) reject(err);
       resolve(userData);
     });
   });
 }
 
-const handlePlaces = async (req, res) => {
+export const handlePlaces = async (req, res) => {
   mongoose.connect(process.env.MONGO_URL);
   const { token } = req.cookies;
   const {
@@ -32,7 +30,7 @@ const handlePlaces = async (req, res) => {
     checkOut,
     maxGuests,
   } = req.body;
-  jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+  jwt.verify(token, jwtsecret, {}, async (err, userData) => {
     if (err) throw err;
     const placeDoc = await Place.create({
       owner: userData.id,
@@ -53,7 +51,7 @@ const handlePlaces = async (req, res) => {
 
 
 // if you want to end the details in your hotels
-const handlePlacesPut = async (req, res) => {
+export const handlePlacesPut = async (req, res) => {
   const { token } = req.cookies;
   const {
     id,
@@ -69,7 +67,7 @@ const handlePlacesPut = async (req, res) => {
     price,
   } = req.body;
   console.log(req.body);
-  jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+  jwt.verify(token, jwtsecret, {}, async (err, userData) => {
     if (err) throw err;
     const placeDoc = await Place.findById(id);
     if (userData.id === placeDoc.owner.toString()) {
@@ -91,7 +89,7 @@ const handlePlacesPut = async (req, res) => {
   });
 };
 
-const handleBooking = async (req, res) => {
+export const handleBooking = async (req, res) => {
   const userData = await getUserDataFromToken(req);
   const { place, checkIn, checkOut, nubmerOfGuests, name, phone, price } =
     req.body;
@@ -112,33 +110,39 @@ const handleBooking = async (req, res) => {
       throw err;
     });
 };
-const handleBooking1 = async (req, res) => {
+export const handleBooking1 = async (req, res) => {
   const userData = await getUserDataFromToken(req);
   res.json(await BookingModel.find({ user: userData.id }).populate("place"));
 };
 
-const GetPlaces = async (req, res) => {
+export const GetPlaces = async (req, res) => {
   res.json(await Place.find());
 };
 
-const GetPlacesId = async (req, res) => {
+export const GetPlacesId = async (req, res) => {
   const { id } = req.params;
   res.json(await Place.findById(id));
 };
 
-const handleUserPlace = async (req, res) => {
+export const handleUserPlace = async (req, res) => {
   const { token } = req.cookies;
-  jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+  jwt.verify(token, jwtsecret, {}, async (err, userData) => {
     const { id } = userData;
     res.json(await Place.find({ owner: id }));
   });
 };
-module.exports = {
-  handlePlaces,
-  handlePlacesPut,
-  handleBooking,
-  handleBooking1,
-  GetPlaces,
-  GetPlacesId,
-  handleUserPlace
-};
+
+export const handleBookingDelete = async (req, res) => {
+    try {
+        const {id: bookingId} = req.params;
+        const booking = await BookingModel.findById(bookingId);
+        if(!booking){
+            return res.status(400).json({message: "Booking not found"});
+        }
+        await BookingModel.findByIdAndDelete(bookingId);
+        res.json({message: "Booking deleted successfully"});
+    } catch (error) {
+        console.log("Error in handle booking delete controller", error);
+        res.status(400).json({message:"Internal Server error" });
+    }
+}

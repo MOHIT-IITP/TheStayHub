@@ -9,6 +9,7 @@ const fs = require("fs");
 const AuthRouter = require("./routes/auth.routes.js");
 const ProfileRouter = require('./routes/profile.routes.js')
 const PlaceRouter = require("./routes/places.routes.js");
+const { ConnectToDb } = require("./libs/connectDb.js");
 const cloudinary = require("cloudinary").v2;
 
 
@@ -26,7 +27,7 @@ app.use("/", AuthRouter);
 app.use('/', ProfileRouter);
 app.use('/',PlaceRouter);
 
-mongoose.connect(process.env.MONGO_URL);
+ConnectToDb();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

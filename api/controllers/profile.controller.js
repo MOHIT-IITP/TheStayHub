@@ -1,19 +1,23 @@
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
-const bcryptSalt = bcrypt.genSaltSync(10);
-const mongoose = require("mongoose")
-require("dotenv").config();
-const jwt = require("jsonwebtoken");
-const jwtSecret = "23423@@#$2343@#$%@$";
+import User from "../models/User.js";
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+
+dotenv.config();
+const jwtsecret = process.env.JWT_SECRET;
 
 const handleProfile = (req, res) =>{
   const { token } = req.cookies;
   if (token) {
-    jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+    jwt.verify(token, jwtsecret, {}, async (err, userData) => {
       if (err) {
         return res.status(401).json("Invalid token");
       }
-      const { name, email, _id } = await User.findById(userData.id);
+      // added user here so that we can check if the user is present or not 
+      const user = await User.findById(userData.id);
+      if (!user) {
+        return res.status(404).json("User not found");
+      }
+      const { name, email, _id } = user;
       res.json({ name, email, _id });
     });
   } else {
@@ -21,4 +25,4 @@ const handleProfile = (req, res) =>{
   }
 }
 
-module.exports = {handleProfile}
+export { handleProfile };

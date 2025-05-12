@@ -15,11 +15,13 @@ export default function BookingsPage() {
       .get(BackendUrl + "/bookings")
       .then((response) => {
         setBookings(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log("Error: ", error);
       });
   }, []);
+    console.log(bookings);
   return (
     <div>
       <AccountNav />
@@ -32,11 +34,11 @@ export default function BookingsPage() {
               className="flex gap-8 mt-4 p-4 shadow-lg bg-violet-100 rounded-[30px]"
             >
               <div className="w-48 p-2">
-                <PlaceImg place={booking.place} />
+                {booking.place && <PlaceImg place={booking.place} />}
               </div>
               <div className="grow pr-3 ">
                 <h2 className=" mt-2 font-semibold text-2xl">
-                  {booking.place.title}
+                  {booking.place ? booking.place.title : "Place is no Longer Listed"}
                 </h2>
                 <div className="py-2 text-xl gap-3">
                   <BookingDates

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import {motion} from "framer-motion";
+import { UserContext } from "../UserContext";
+import { useContext } from "react";
 import {
   FaTwitter,
   FaInstagram,
@@ -7,6 +9,8 @@ import {
 } from "react-icons/fa";
 
 export default function Footer() {
+const {user} = useContext(UserContext);
+
   return (
     <footer className=" text-white bg-neutral-900 py-8 -m-8 mt-16 ">
         <div className=" flex justify-around items-center flex-wrap gap-4  place-items-center">
@@ -51,7 +55,7 @@ export default function Footer() {
             <Link to={"/"} className="mb-3 text-primary text-lg font-bold">
             TheStayHub
             </Link>
-            <Link className="flex gap-1 my-2 justify-center hover:text-primary" to={"/account"}>
+            <Link className="flex gap-1 my-2 justify-center hover:text-primary" to={ user ? "/account": "/login"}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -69,7 +73,7 @@ export default function Footer() {
               Profile
             </Link>
             <Link
-              to={"/account/bookings"}
+              to={ user ? "/account/bookings": "/login"}
               className="hover:text-primary flex gap-1 justify-center"
             >
               <svg
