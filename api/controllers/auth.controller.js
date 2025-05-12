@@ -1,14 +1,15 @@
-const User = require("../models/User");
-const bcrypt = require("bcryptjs");
+import User from "../models/User.js";
+import bcrypt from "bcryptjs";
 const bcryptSalt = bcrypt.genSaltSync(10);
-const mongoose = require("mongoose")
-require("dotenv").config();
-const jwt = require("jsonwebtoken");
+import dotenv from "dotenv";
+dotenv.config();
+import { generateJwtToken } from "../utils/jwtVerify.js";
+import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
 const jwtsecret = process.env.JWT_SECRET;
 
-const handleLogin = async (req, res) => {
+export const handleLogin = async (req, res) => {
   try {
-    // Remove mongoose.connect from here; connect once in your app entry point
     const { email, password } = req.body;
     const userDoc = await User.findOne({ email });
     if (!userDoc) {
@@ -16,20 +17,7 @@ const handleLogin = async (req, res) => {
     }
     const passOk = bcrypt.compareSync(password, userDoc.password);
     if (passOk) {
-      jwt.sign(
-        {
-          email: userDoc.email,
-          id: userDoc._id,
-        },
-        jwtsecret,
-        {},
-        (err, token) => {
-          if (err) {
-            return res.status(500).json({ message: "Token generation failed" });
-          }
-          res.cookie("token", token).json(userDoc);
-        }
-      );
+        generateJwtToken(userDoc,res);
     } else {
       res.status(422).json({ message: "Password is incorrect" });
     }
@@ -38,7 +26,7 @@ const handleLogin = async (req, res) => {
   }
 }
 
- const handleRegister = async( req, res) => {
+ export const handleRegister = async( req, res) => {
   const { name, email, password } = req.body;
   try {
     const userDoc = await User.create({
@@ -46,14 +34,14 @@ const handleLogin = async (req, res) => {
       email,
       password: bcrypt.hashSync(password, bcryptSalt),
     });
+    generateJwtToken(userDoc, res);
     res.json(userDoc);
   } catch (error) {
     res.status(422).json(error);
   }
 }
 
-const handleLogout = async (req, res) => {
+export const handleLogout = async (req, res) => {
   res.cookie("token", "").json(true);
 }
 
-module.exports = { handleLogin, handleRegister, handleLogout };

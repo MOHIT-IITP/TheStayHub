@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 dotenv.config();
 const jwtsecret = process.env.JWT_SECRET;
 
-const handleProfile = (req, res) =>{
+export const handleProfile = (req, res) =>{
   const { token } = req.cookies;
   if (token) {
     jwt.verify(token, jwtsecret, {}, async (err, userData) => {
@@ -21,8 +21,7 @@ const handleProfile = (req, res) =>{
       res.json({ name, email, _id });
     });
   } else {
-    res.status(401).json("no token found");
+    res.status(400).json("no token found");
   }
-}
+};
 
-export { handleProfile };

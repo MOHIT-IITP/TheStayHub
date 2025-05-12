@@ -1,10 +1,10 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import IndexPage from "./pages/Index";
 import LoginPage from "./pages/LoginPage";
 import Layout from "./Layout";
 import RegisterPage from "./pages/RegisterPage";
 import axios from "axios";
-import { UserContextProvider } from "./UserContext";
+import { UserContext, UserContextProvider } from "./UserContext";
 import AccountPage from "./pages/Account";
 import PlacesPage from "./pages/PlacesPage";
 import PlacesFormPage from "./pages/PlacesFormPage";
@@ -12,18 +12,20 @@ import "@fontsource/poppins";
 import PlaceFullPage from "./pages/PlaceFullPage";
 import BookingsPage from "./pages/BookingsPage";
 import BookingPage from "./pages/BookingPage";
+import { useContext } from "react";
 
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 axios.defaults.withCredentials = true;
 
 function App() {
+    const {user} = useContext(UserContext);
   return (
     <UserContextProvider>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<IndexPage />} />
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/register" element={<RegisterPage />}></Route>
+          <Route path="/login" element={ user ? Navigate('/') : <LoginPage />}></Route>
+          <Route path="/register" element={ user ? Navigate('/') : <RegisterPage />}></Route>
           <Route path="/account" element={<AccountPage />}></Route>
           <Route path="/account/places" element={<PlacesPage />}></Route>
           <Route

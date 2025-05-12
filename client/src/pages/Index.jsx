@@ -51,8 +51,8 @@ export default function IndexPage() {
                 ? it
                 : it.address.toLowerCase().includes(search.toLowerCase());
             })
-            .map((place) => (
-              <Link to={"/place/" + place._id} className="bg-violet-100 shadow-lg overflow-hidden rounded-[30px]">
+            .map((place, index) => (
+              <Link key={index} to={"/place/" + place._id} className="bg-violet-100 shadow-lg overflow-hidden rounded-[30px]">
                 <div className="bg-gray-500 flex overflow-hidden">
                   {place.photos?.[0] && (
                     <motion.div
